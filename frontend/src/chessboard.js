@@ -1,9 +1,12 @@
 class Chessboard {
 	constructor(parentdiv, cpu, players) {
 		this.parentdiv = parentdiv;
+
 		this.board = document.createElement("CANVAS");
 		this.boardCTX = this.board.getContext('2d');
 		
+		this.parentdiv.appendChild(this.board);
+
 		/*
 		if(cpu != false) {
 			this.player2 = cpu;
