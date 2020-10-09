@@ -1,5 +1,3 @@
-import Chessboard from './index/chessboard.js";
-
 window.onload = () => {
 	var players = new Object();
 	players.player1 = true;
