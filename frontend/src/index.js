@@ -10,3 +10,5 @@ class Chessboard {
 		}
 	}
 }
+
+export { Chessboard };
