@@ -7,7 +7,7 @@ class Chessboard {
 		
 		this.parentdiv.appendChild(this.board);
 	
-		canvas.addEventListener("mousedown", this.ChessboardSelect);
+		this.board.addEventListener("mousedown", this.ChessboardSelect);
 
 		this.InitializeGraphics(graphicsInfo);
 
@@ -67,7 +67,10 @@ class Chessboard {
 		//TODO: MAke icons and load in icons
 	}
 
-	ChessboardSelect() {
+	ChessboardSelect(event) {
+		let clickX = event.pageX;
+		let clickY = event.pageY;
 
+		console.log(clickX + " " + clickY);
 	}
 }
