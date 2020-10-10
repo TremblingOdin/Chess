@@ -4,4 +4,4 @@ window.onload = () => {
 	players.player2 = true;
 
 	const chessboard = new Chessboard(document.getElementById("chessboard"), false, players);
-};
+}
