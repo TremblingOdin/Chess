@@ -7,6 +7,8 @@ class Chessboard {
 		
 		this.parentdiv.appendChild(this.board);
 	
+		canvas.addEventListener("mousedown", this.ChessboardSelect);
+
 		this.InitializeGraphics(graphicsInfo);
 
 		/*
@@ -62,6 +64,10 @@ class Chessboard {
 			rowStartBlack = !rowStartBlack;
 		}
 
+		//TODO: MAke icons and load in icons
+	}
+
+	ChessboardSelect() {
 
 	}
 }
