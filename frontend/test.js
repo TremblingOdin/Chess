@@ -3,5 +3,7 @@ window.onload = () => {
 	players.player1 = true;
 	players.player2 = true;
 
-	const chessboard = new Chessboard(document.getElementById("chessboard"), false, players);
+	var graphicsInfo = null;
+
+	const chessboard = new Chessboard(document.getElementById("chessboard"), false, players, graphicsInfo);
 }

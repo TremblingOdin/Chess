@@ -20,18 +20,22 @@ class Chessboard {
 	}
 
 	InitializeGraphics(graphicsInfo) {
-		if(-('-' + graphicsInfo.width != NaN) {
-			this.board.width = graphicsInfo.width;
-		} else {
-			this.board.width = 500;
+		if(graphicsInfo == null || graphicsInfo == undefined) {
+			this.board.width = 800;
+			this.board.height = 800;
+		} else { 
+			if(-('-' + graphicsInfo.width != NaN)) {
+				this.board.width = graphicsInfo.width;
+			} else {
+				this.board.width = 800;
+			}
+
+			if(-('-' + graphicsInfo.height != NaN)) {
+				this.board.height = 800;
+			} else {
+				this.board.height = 800
+			}
 		}
 
-		if(-('-' + graphicsInfo.height != NaN) {
-			this.board.height = grphicsInfo.height;
-		} else {
-			this.board.height = 500;
-		}
-			
-		this.boardCTX = this.board.GetContext('2d');
 	}
 }
