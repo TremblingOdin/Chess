@@ -36,6 +36,30 @@ class Chessboard {
 				this.board.height = 800
 			}
 		}
+		
+		let rowCount = 8;
+		let columnCount = 8;
 
+		let rowSize = this.board.height / 8;
+		let columnSize = this.board.width / 8;
+
+		let rowStartBlack = true;
+		//On my chessboard at home, sometimes a row will end on black then then next one will start on black so I dunno this is how I'm fixing that
+		for(var i = 0; i < rowCount; i++) {
+			let isBlack = rowStartBlack;
+			for(var j = 0; j < columnCount; j++) {
+				if(isBlack) {
+					this.boardCTX.fillStyle = "rgb(255,255,255)";
+					this.boardCTX.fillRect(i * rowSize, j * columnSize, rowSize, columnSize);
+				} else {
+					this.boardCTX.fillStyle = "rgb(22,22,22)";
+					this.boardCTX.fillRect(i * rowSize, j * columnSize, rowSize, columnSize);
+				}
+
+				isBlack = !isBlack;
+			}
+
+			rowStartBlack = !rowStartBlack;
+		}
 	}
 }
