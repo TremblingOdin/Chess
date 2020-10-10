@@ -71,6 +71,13 @@ class Chessboard {
 		let clickX = event.pageX;
 		let clickY = event.pageY;
 
-		console.log(clickX + " " + clickY);
+		let rowSize = this.board.height / 8;
+		let columnSize = this.board.width / 8;
+
+		let rowNumber = clickX % rowSize;
+		let columnNumber = clickY % columnSize;
+
+		this.boardCTX.fillStyle = "rgb(50,255,50)";
+		this.boardCTX.fillRect(rowNumber * rowSize, columnNumber * columnsSize, rowSize, columnSize);
 	}
 }
