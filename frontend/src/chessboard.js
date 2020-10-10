@@ -45,8 +45,8 @@ class Chessboard {
 		let rowCount = 8;
 		let columnCount = 8;
 
-		let rowSize = this.board.height / 8;
-		let columnSize = this.board.width / 8;
+		this.rowSize = this.board.height / 8;
+		this.columnSize = this.board.width / 8;
 
 		let rowStartBlack = true;
 		//On my chessboard at home, sometimes a row will end on black then then next one will start on black so I dunno this is how I'm fixing that
@@ -55,10 +55,12 @@ class Chessboard {
 			for(var j = 0; j < columnCount; j++) {
 				if(isBlack) {
 					this.boardCTX.fillStyle = "rgb(255,255,255)";
-					this.boardCTX.fillRect(i * rowSize, j * columnSize, rowSize, columnSize);
+					this.boardCTX.fillRect(i * this.rowSize, j * this.columnSize, 
+						this.rowSize, this.columnSize);
 				} else {
 					this.boardCTX.fillStyle = "rgb(22,22,22)";
-					this.boardCTX.fillRect(i * rowSize, j * columnSize, rowSize, columnSize);
+					this.boardCTX.fillRect(i * this.rowSize, j * this.columnSize, 
+						this.rowSize, this.columnSize);
 				}
 
 				isBlack = !isBlack;
@@ -74,15 +76,19 @@ class Chessboard {
 		let clickX = event.pageX % this.board.width;
 		let clickY = event.pageY % this.board.height;
 
-		let rowSize = this.board.height / 8;
-		let columnSize = this.board.width / 8;
-
-		let rowNumber = Math.floor(clickX / rowSize);
-		let columnNumber = Math.floor(clickY / columnSize);
+		let rowNumber = Math.floor(clickX / this.rowSize);
+		let columnNumber = Math.floor(clickY / this.columnSize);
 
 		console.log(rowNumber + " " + columnNumber);
 
 		this.boardCTX.fillStyle = "rgb(50,255,50)";
-		this.boardCTX.fillRect(rowNumber * rowSize, columnNumber * columnSize, rowSize, columnSize);
+		this.boardCTX.fillRect(rowNumber * this.rowSize, columnNumber * this.columnSize, 
+			this.rowSize, this.columnSize);
+	}
+
+	ChessboardDeselect(event) {
+		let clickX = event.pageX % this.board.width;
+		let clickY = event.pageY % this.board.height;
+
 	}
 }
