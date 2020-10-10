@@ -6,10 +6,13 @@ class Chessboard {
 		this.boardCTX = this.board.getContext('2d');
 		
 		this.parentdiv.appendChild(this.board);
-	
-		this.board.addEventListener("mousedown", this.ChessboardSelect);
 
-		this.InitializeGraphics(graphicsInfo);
+		var ChessboardSelect = this.ChessboardSelect.bind(this);
+		var InitializeGraphics = this.InitializeGraphics.bind(this);
+
+		this.board.addEventListener("mousedown", ChessboardSelect);
+
+		InitializeGraphics(graphicsInfo);
 
 		/*
 		if(cpu != false) {
@@ -68,16 +71,18 @@ class Chessboard {
 	}
 
 	ChessboardSelect(event) {
-		let clickX = event.pageX;
-		let clickY = event.pageY;
+		let clickX = event.pageX % this.board.width;
+		let clickY = event.pageY % this.board.height;
 
 		let rowSize = this.board.height / 8;
 		let columnSize = this.board.width / 8;
 
-		let rowNumber = clickX % rowSize;
-		let columnNumber = clickY % columnSize;
+		let rowNumber = Math.floor(clickX / rowSize);
+		let columnNumber = Math.floor(clickY / columnSize);
+
+		console.log(rowNumber + " " + columnNumber);
 
 		this.boardCTX.fillStyle = "rgb(50,255,50)";
-		this.boardCTX.fillRect(rowNumber * rowSize, columnNumber * columnsSize, rowSize, columnSize);
+		this.boardCTX.fillRect(rowNumber * rowSize, columnNumber * columnSize, rowSize, columnSize);
 	}
 }
