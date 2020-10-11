@@ -9,12 +9,14 @@ class Chessboard {
 
 		var ChessboardSelect = this.ChessboardSelect.bind(this);
 		var ChessboardDeselect = this.ChessboardDeselect.bind(this);
+		var InitializeData = this.InitializeData.bind(this);
 		var InitializeGraphics = this.InitializeGraphics.bind(this);
 
 		this.board.addEventListener("mousedown", ChessboardSelect);
 		this.board.addEventListener("mouseup", ChessboardDeselect);
 
 		InitializeGraphics(graphicsInfo);
+		this.boardArray = InitializeData();
 
 		/*
 		if(cpu != false) {
