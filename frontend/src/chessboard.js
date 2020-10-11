@@ -8,9 +8,11 @@ class Chessboard {
 		this.parentdiv.appendChild(this.board);
 
 		var ChessboardSelect = this.ChessboardSelect.bind(this);
+		var ChessboardDeselect = this.ChessboardDeselect.bind(this);
 		var InitializeGraphics = this.InitializeGraphics.bind(this);
 
 		this.board.addEventListener("mousedown", ChessboardSelect);
+		this.board.addEventListener("mouseup", ChessboardDeselect);
 
 		InitializeGraphics(graphicsInfo);
 
@@ -94,13 +96,13 @@ class Chessboard {
 		//If the row is even, all even columns are white and odd are black
 		//If the row is odd, all even columns are black and odd are white
 		if(rowNumber % 2 == 0) {
-			if(columnNumber % 2 == 0) {
+			if(columnNumber % 2 == 1) {
 				this.boardCTX.fillStyle = "rgb(22,22,22)";
 			} else {
 				this.boardCTX.fillStyle = "rgb(255,255,255)";
 			}
 		} else {
-			if(columnNumber % 2 == 0) {
+			if(columnNumber % 2 == 1) {
 				this.boardCTX.fillStyle = "rgb(255,255,255)";
 			} else {
 				this.boardCTX.fillStyle = "rgb(22,22,22)";
