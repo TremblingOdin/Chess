@@ -79,8 +79,6 @@ class Chessboard {
 		let rowNumber = Math.floor(clickX / this.rowSize);
 		let columnNumber = Math.floor(clickY / this.columnSize);
 
-		console.log(rowNumber + " " + columnNumber);
-
 		this.boardCTX.fillStyle = "rgb(50,255,50)";
 		this.boardCTX.fillRect(rowNumber * this.rowSize, columnNumber * this.columnSize, 
 			this.rowSize, this.columnSize);
@@ -90,5 +88,26 @@ class Chessboard {
 		let clickX = event.pageX % this.board.width;
 		let clickY = event.pageY % this.board.height;
 
+		let rowNumber = Math.floor(clickX / this.rowSize);
+		let columnNumber = Math.floor(clickY/ this.columnSize);
+
+		//If the row is even, all even columns are white and odd are black
+		//If the row is odd, all even columns are black and odd are white
+		if(rowNumber % 2 == 0) {
+			if(columnNumber % 2 == 0) {
+				this.boardCTX.fillStyle = "rgb(22,22,22)";
+			} else {
+				this.boardCTX.fillStyle = "rgb(255,255,255)";
+			}
+		} else {
+			if(columnNumber % 2 == 0) {
+				this.boardCTX.fillStyle = "rgb(255,255,255)";
+			} else {
+				this.boardCTX.fillStyle = "rgb(22,22,22)";
+			}
+		}
+		
+		this.boardCTX.fillRect(rowNumber * this.rowSize, columnNumber * this.columnSize,
+			this.rowSize, this.columnSize);
 	}
 }
