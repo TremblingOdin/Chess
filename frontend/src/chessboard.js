@@ -4,7 +4,7 @@ function defineEnumProperty(ctx) {
 			configurable: false,
 			writable: false,
 			enumerable: true,
-			value: deepFreeze(value)
+			value: value
 		});
 	}
 }
