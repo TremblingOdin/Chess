@@ -1,3 +1,11 @@
+class ChessPiece {
+	constructor(black, type) {
+		if(black) {
+			this.color = BLACK;
+		}
+	}
+}
+
 class Chessboard {
 	constructor(parentdiv, cpu, players, graphicsInfo) {
 		this.parentdiv = parentdiv;
@@ -74,6 +82,11 @@ class Chessboard {
 		}
 
 		//TODO: MAke icons and load in icons
+	}
+
+	InitializeData() {
+		let defaultData = [];
+
 	}
 
 	ChessboardSelect(event) {
