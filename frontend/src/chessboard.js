@@ -1,3 +1,39 @@
+function defineEnumProperty(ctx) {
+	return (prop, value) => {
+		Object.defineProperty(ctx, prop, {
+			configurable: false,
+			writable: false,
+			enumerable: true,
+			value: deepFreeze(value)
+		});
+	}
+}
+
+function Color() {
+	return Color;
+}
+
+Color.values = function() {
+	return Object.keys(Color)
+		.filter(key => typeof Color[key] !== 'function')
+		.sort((key1, key2) => Color[key1] - Color[key2]);
+}
+
+Color.keys = function() {
+	return Color.values()
+		.map(key => Color[key]);
+}
+
+Color.getByValue = function(val) {
+	return Color.values()
+		.find(colorValue => Color[colorValue] === val);
+}
+
+var addEnumValue = defineEnumProperty(Color), colors = ['WHITE', 'BLACK'];
+colors.forEach((color, index) => {
+	addEnumValue(color, index);
+});
+
 class ChessPiece {
 	constructor(black, type) {
 		if(black) {
