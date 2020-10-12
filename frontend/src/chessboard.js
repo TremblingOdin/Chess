@@ -132,7 +132,7 @@ class Chessboard {
 		let rowNumber = Math.floor(clickX / this.rowSize);
 		let columnNumber = Math.floor(clickY / this.columnSize);
 
-		this.boardCTX.fillStyle = "rgb(50,255,50)";
+		this.boardCTX.fillStyle = "rgba(50,255,50,0.5)";
 		this.boardCTX.fillRect(rowNumber * this.rowSize, columnNumber * this.columnSize, 
 			this.rowSize, this.columnSize);
 	}
