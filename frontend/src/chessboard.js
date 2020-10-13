@@ -34,6 +34,10 @@ colors.forEach((color, index) => {
 	addEnumValue(color, index);
 });
 
+function Piece() {
+	return Piece;
+}
+
 class ChessPiece {
 	constructor(black, type) {
 		if(black) {
@@ -122,6 +126,7 @@ class Chessboard {
 
 	InitializeData() {
 		let defaultData = [];
+		
 
 	}
 
