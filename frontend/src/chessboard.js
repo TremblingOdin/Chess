@@ -29,14 +29,37 @@ Color.getByValue = function(val) {
 		.find(colorValue => Color[colorValue] === val);
 }
 
-var addEnumValue = defineEnumProperty(Color), colors = ['WHITE', 'BLACK'];
+var addEnumColor = defineEnumProperty(Color), colors = ['WHITE', 'BLACK'];
 colors.forEach((color, index) => {
-	addEnumValue(color, index);
+	addEnumColor(color, index);
 });
+
 
 function Piece() {
 	return Piece;
 }
+
+Piece.values = function() {
+	return Object.keys(Piece)
+		.filter(key => typeof Piece[key] !== 'function')
+		.sort((key1, key2) => Piece[key1] - Piece[key2]);
+}
+
+Piece.keys = function() {
+	return Color.values()
+		.map(key => Color[key]);
+}
+
+Piece.getByValue = function(val) {
+	return Piece.values()
+		.find(pieceValue => Piece[pieceValue] === val);
+}
+
+var addEnumPiece = defineEnumProperty(Piece), pieces = ['PAWN', 'ROOK', 'KNIGHT', 'BISHOP', 'QUEEN', 'KING'];
+pieces.forEach((piece, index) => {
+	addEnumPiece(piece, index);
+}
+
 
 class ChessPiece {
 	constructor(black, type) {
