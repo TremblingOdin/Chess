@@ -62,9 +62,17 @@ pieces.forEach((piece, index) => {
 
 
 class ChessPiece {
-	constructor(black, type) {
-		if(black) {
-			this.color = BLACK;
+	constructor(color, type) {
+		if(Color.value.includes(color) || Color.keys.includes(color)) {
+			this.color = color;
+		} else {
+			throw "[ChessPiece] passed in color is not a Color enum value";
+		}
+
+		if(Piece.value.includes(type) || Piece.keys.includes(type)) {
+			this.pieceType = type;
+		} else {
+			throw "[ChessPiece] passed in type is not a Piece enum value";
 		}
 	}
 }
