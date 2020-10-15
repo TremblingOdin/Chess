@@ -1,6 +1,8 @@
 import os
 import chess
 import numpy as np
+np.set_printoptions(supress=True)
+
 import pandas as pd
 from tensorflow import keras
 from tensorflow.keras import layers
@@ -46,7 +48,6 @@ number_dict = {
     8 : [0,0,0,0,0,0,1],
 }
 
-
 def access_data(data_dir):
     os.chdir(data_dir)
     df = pd.read_csv(normalized_csv)
@@ -54,7 +55,7 @@ def access_data(data_dir):
     split_data = []
     indice = 500
 
-def make_matrix(boad):
+def make_matrix(board):
     pgn = board.epd()
     mat = []
     pieces = pgn.split(" ", 1)[0]
