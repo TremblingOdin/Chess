@@ -45,7 +45,7 @@ number_dict = {
     7 : [0,0,0,0,0,1,0],
     8 : [0,0,0,0,0,0,1],
 }
-}
+
 
 def access_data(data_dir):
     os.chdir(data_dir)
@@ -54,4 +54,27 @@ def access_data(data_dir):
     split_data = []
     indice = 500
 
+def make_matrix(boad):
+    pgn = board.epd()
+    mat = []
+    pieces = pgn.split(" ", 1)[0]
+    rows = pieces.split("/")
+    for row in rows:
+        temp_mat = []
+        for thing in row:
+            if thing.isdigit():
+                for i in range(0, int(thing)):
+                    temp_mat.append('.')
+            else:
+                temp_mat.append(thing)
+        mat.append(temp_mat)
+    return mat
 
+def translate(matrix, passed_chess_dict):
+    rows = []
+    for row in matrix:
+        terms = []
+        for term in row:
+            terms.append(chess_dict[term])
+        rows.append(terms)
+    return rows
