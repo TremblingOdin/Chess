@@ -11,3 +11,23 @@ class Node():
         if len(self.edges) > 0:
             return False
         return True
+
+class Edge():
+    def __init__(self, inNode, outNode, prior, action):
+        self.id = inNode.state.id + '|' +outNode.state.id
+        # connections
+        self.inNode = inNode
+        self.outNode = outNode
+        self.playerTurn = inNode.state.playerTurn
+        # movements it can make
+        self.action = action
+
+        # heuristics
+        self.stats = {
+                    'N': 0,
+                    'W': 0,
+                    'Q': 0,
+                    '{': prior,
+
+
+                }
