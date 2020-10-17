@@ -40,3 +40,5 @@ class MCTS():
         self.tree = {}
         self.cpuct = cpuct
 
+    def __len__(self):
+        return len(self.tree)
