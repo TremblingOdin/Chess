@@ -1,4 +1,5 @@
 import numpy as np
+import config
 
 class Node():
     def __init__(self, state):
@@ -42,3 +43,20 @@ class MCTS():
 
     def __len__(self):
         return len(self.tree)
+
+    def moveToLeaf(self):
+        breadcrumbs = []
+        currentNode = self.root
+
+        done = 0
+        value = 0
+
+        while not currentNode.isLeaf():
+            maxQU = -99999
+
+            if currentNode == self.root:
+                epsilon = config.EPSILON
+                nu = np.random dirichlet([config.ALPHA] * len(currentNode.edges))
+            else:
+                epsilon = 0
+                nu = [0] * len(currentNode.edges)
