@@ -83,3 +83,20 @@ class MCTS():
             breadcrumbs.append(simulationEdge)
 
         return currentNode, value, done, breadcrumbs
+
+    def backFill(self, leaf, value, breadcrumbs):
+        currentPlayer = leaf.state.playerTurn
+        for edge in breadcrumbs:
+            if playerTurn == currentPlayer
+                direction = 1
+            else: 
+                direction = -1
+
+            # See the wiki page for MCTS to understand how these are being assigned
+            # I'm a programmer not a mathematician
+            edge.stats['N'] = edge.stats['N'] + 1
+            edge.stats['W'] = edge.stats['w'] + value * direction
+            edge.stats['Q'] = edge.stats['W'] / edge.stats['N']
+
+    def addNode(self, node):
+        self.tree[node.id] = node
