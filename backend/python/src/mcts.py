@@ -98,5 +98,11 @@ class MCTS():
             edge.stats['W'] = edge.stats['w'] + value * direction
             edge.stats['Q'] = edge.stats['W'] / edge.stats['N']
 
+            temp_value = value * direction
+
+            info = 'updating edge with value {temp_value} for player {playerTurn} ... N = {edge.stats["N"]}, W = {edge.stats["W"]}, Q = {edge.stats["Q"]}'
+
+            edge.outNode.state.render(info)
+
     def addNode(self, node):
         self.tree[node.id] = node
