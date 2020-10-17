@@ -60,3 +60,26 @@ class MCTS():
             else:
                 epsilon = 0
                 nu = [0] * len(currentNode.edges)
+
+            Nb = 0
+            for action, edge in currentNode.edges:
+                Nb = Nb + edge.stats['N']
+
+            for idx, (action, edge) in enumerate(currentNode.edges):
+                U = self.cpuct * \
+                        ((1-epsilon) * edge.stats['P'] + epsilon * nu[idx]) * \
+                        np.sqrt(Nb) / (1 + edge.stats['N'])
+
+                Q = edge.stats['Q']
+
+                if Q + U > maxQU:
+                    maxQU = Q + U
+                    simulationAction = action
+                    simulationEdge = edge
+
+            # Create the new state from the POV of the new playerTurn
+            newState, value, done = currentNode.state.takeAction(simulationAction)
+            currentNode = simulationEdge.outNode
+            breadcrumbs.append(simulationEdge)
+
+        return currentNode, value, done, breadcrumbs
