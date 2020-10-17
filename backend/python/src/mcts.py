@@ -31,3 +31,12 @@ class Edge():
 
 
                 }
+
+# CPUCT is actualy CPuct with PUCT meaning "Polynomial Upper Confidence Trees"
+# The C stands for
+class MCTS():
+    def __init__(self, root, cpuct):
+        self.root = root
+        self.tree = {}
+        self.cpuct = cpuct
+
