@@ -14,19 +14,18 @@ class Game:
 
 
 class GameState():
-    def __init__(self, board, player_turn, win_conditions):
+    def __init__(self, board, player_turn, win_conditions, game_play):
         self.board = board
         self.pieces = {'1':'X', '0':'-', '-1':'0'}
         self.winners = win_conditions
         self.player_turn = player_turn
         self.binary = self._binary()
         self.id = self._convert_state_to_id()
-        self.allowedActions = self._allowed_actions()
+        self.allowedActions = game_play
         self.isEndGame = self._check_for_end_game()
         self.value = self._get_value()
         self.score = self._get_score()
-
-    def _allowed_actions
+        
 
 
 
