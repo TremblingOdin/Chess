@@ -16,6 +16,7 @@ class Game:
 
 
 # to make it more modular the win conditions and gameplay should be passed in
+# As I go through more of this I am thinking Game State might need to be defined from an external source in order to fully work
 class GameState():
     def __init__(self, board, player_turn, win_conditions, game_play):
         self.board = board
@@ -39,3 +40,16 @@ class GameState():
         position = np.append(current_player_position, other_position)
 
         return(position)
+
+    def _convert_state_to_id(self):
+        player1_position = np.zeros(len(self.board), dtype = np.int)
+        player1_position[self.board==1] = 1
+
+        other_position = np.zeros(len(self.board), dtype=np.int)
+        other_position[self.board==-1] = 1
+        
+        position = np.append(player1_position,other_position)
+        
+        id = ''.join(map(str,position))
+
+        return id
