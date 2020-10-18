@@ -18,38 +18,33 @@ class Game:
 # to make it more modular the win conditions and gameplay should be passed in
 # As I go through more of this I am thinking Game State might need to be defined from an external source in order to fully work
 class GameState():
-    def __init__(self, board, player_turn, win_conditions, game_play):
+    def __init__(self, board, player_turn, win_conditions, game_play, binary, conversion_to_id, endgame_check, value_function):
         self.board = board
         self.pieces = {'1':'X', '0':'-', '-1':'0'}
         self.winners = win_conditions
         self.player_turn = player_turn
-        self.binary = self._binary()
-        self.id = self._convert_state_to_id()
-        self.allowedActions = game_play
-        self.isEndGame = self._check_for_end_game()
-        self.value = self._get_value()
+        self.binary = binary
+        self.id = conversion_to_id
+        self.allowed_actions = game_play
+        self.is_end_game = endgame_check
+        self.value = value_function
         self.score = self._get_score()
-        
-    def _binary(self):
-        current_player_position = np.zeros(len(self.board), dtype=np.int)
-        current_player_position[self.board==self.player_turn] = 1
+       
+    def _get_score():
+        tmp = self.value
+        return(tmp[1],tmp[2])
 
-        other_position = np.zeros(len(self.board), dtype=np.int)
-        other_position[self.board==self.player_turn] = 1
+    def take_action(self, action):
+        new_board = np.array(self.board)
+        nead_board[action] = self.player_turn
 
-        position = np.append(current_player_position, other_position)
+        new_state = self._reinitialize(new_board, -self.player_turn)
 
-        return(position)
+        value = 0
+        done = 0
 
-    def _convert_state_to_id(self):
-        player1_position = np.zeros(len(self.board), dtype = np.int)
-        player1_position[self.board==1] = 1
+        if(new_state.is_end_game:
+                value = new_state.value[0]
+                done = 1
 
-        other_position = np.zeros(len(self.board), dtype=np.int)
-        other_position[self.board==-1] = 1
-        
-        position = np.append(player1_position,other_position)
-        
-        id = ''.join(map(str,position))
-
-        return id
+        return (new_state, value, done)
