@@ -1,30 +1,32 @@
 import numpy as np
 
 class Game:
-    def __init__(self, startArray, actionArray, name):
+    def __init__(self, start_array, action_array, name):
         self.currentPlayer = 1
-        self.gameState = GameState(np.array(startArray, dtype=np.int), 1)
-        self.actionSpace = np.array(actionArray, dtype=np.int)
+        self.game_state = GameState(np.array(startArray, dtype=np.int), 1)
+        self.action_space = np.array(actionArray, dtype=np.int)
         self.pieces = {'1':'X', '0':'-', '-1':'0'}
         self.gridshape = (6,7)
         self.input_shape = (2,6,7)
         self.name = name
-        self.state_size = len(self.gameState.binary)
-        self.action_size = len(self.actionSpace)
+        self.state_size = len(self.game_state.binary)
+        self.action_size = len(self.action_space)
 
 
 class GameState():
-    def __init__(self, board, PlayerTurn, winConditions):
+    def __init__(self, board, player_turn, win_conditions):
         self.board = board
         self.pieces = {'1':'X', '0':'-', '-1':'0'}
-        self.winners = winConditions
-        self.playerTurn = playerTurn
+        self.winners = win_conditions
+        self.player_turn = player_turn
         self.binary = self._binary()
-        self.id = self._convertStateToId()
-        self.allowedActions = self._allowedActions()
-        self.isEndGame = self._checkForEndGame()
-        self.value = self._getValue()
-        self.score = self._getScore()
+        self.id = self._convert_state_to_id()
+        self.allowedActions = self._allowed_actions()
+        self.isEndGame = self._check_for_end_game()
+        self.value = self._get_value()
+        self.score = self._get_score()
+
+    def _allowed_actions
 
 
 
