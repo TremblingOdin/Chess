@@ -1,9 +1,11 @@
 import numpy as np
 
 class Game:
-    def __init__(self, start_array, action_array, name):
+    def __init__(self, start_array, action_array, name, win_conditions, game_play):
         self.currentPlayer = 1
-        self.game_state = GameState(np.array(startArray, dtype=np.int), 1)
+        self.win_conditions = win_conditions
+        self.game_play = game_play
+        self.game_state = GameState(np.array(startArray, dtype=np.int), 1, self.win_conditions, self.game_play)
         self.action_space = np.array(actionArray, dtype=np.int)
         self.pieces = {'1':'X', '0':'-', '-1':'0'}
         self.gridshape = (6,7)
@@ -13,6 +15,7 @@ class Game:
         self.action_size = len(self.action_space)
 
 
+# to make it more modular the win conditions and gameplay should be passed in
 class GameState():
     def __init__(self, board, player_turn, win_conditions, game_play):
         self.board = board
@@ -26,6 +29,13 @@ class GameState():
         self.value = self._get_value()
         self.score = self._get_score()
         
+    def _binary(self):
+        current_player_position = np.zeros(len(self.board), dtype=np.int)
+        current_player_position[self.board==self.player_turn] = 1
 
+        other_position = np.zeros(len(self.board), dtype=np.int)
+        other_position[self.board==self.player_turn] = 1
 
+        position = np.append(current_player_position, other_position)
 
+        return(position)
