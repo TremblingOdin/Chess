@@ -28,7 +28,26 @@ class Game:
         info = None
         return ((next_state, value, done, info))
 
-    
+    def identities(self, state, action_values, height, width):
+        identities = [(state, action_values)]
+        current_board = state.board
+        current_av = action_values
+
+        temp_board_array = []
+        temp_av_array = []
+
+        for x in range(0, height):
+            for y in range(width, -1, -1):
+                index = width * height + y
+                temp_board_array.append(current_board[index])
+                temp_av_array.append(current_av[index])
+                
+        current_board = np.array(temp_board_array)
+        current_av = np.array(temp_av_array)
+
+        identities.append((state.reinitialize(current_board, state.player_turn),current_av))
+        return identities
+
 
 # to make it more modular the win conditions and gameplay should be passed in
 # As I go through more of this I am thinking Game State might need to be defined from an external source in order to fully work
@@ -46,7 +65,7 @@ class GameState():
         self.score = self._get_score()
        
     #I think I would need to ask for a new game state many times, so I made a function
-    def _reinitialize(self, board, player_turn):
+    def reinitialize(self, board, player_turn):
         state = GameState(board, self.pieces, player_turn, self.winners, self.allowed_actions, self.binary, self.id, self.is_end_game, self.value)
         return state
         
