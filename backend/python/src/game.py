@@ -1,11 +1,12 @@
 import numpy as np
 
 class Game:
-    def __init__(self, start_array, action_array, name, win_conditions, game_play):
-        self.currentPlayer = 1
+    def __init__(self, start_array, action_array, name, win_conditions, game_play, identities):
+        self.start_array = start_array
+        self.current_player = 1
         self.win_conditions = win_conditions
         self.game_play = game_play
-        self.game_state = GameState(np.array(startArray, dtype=np.int), 1, self.win_conditions, self.game_play)
+        self.game_state = GameState(np.array(start_array, dtype=np.int), 1, self.win_conditions, self.game_play)
         self.action_space = np.array(actionArray, dtype=np.int)
         self.pieces = {'1':'X', '0':'-', '-1':'0'}
         self.gridshape = (6,7)
@@ -13,7 +14,21 @@ class Game:
         self.name = name
         self.state_size = len(self.game_state.binary)
         self.action_size = len(self.action_space)
+        self.identities = identities
 
+    def reset(self):
+        self.game_state = GameState(np.array(start_array, dtype = np.int), 1)
+        self.current_player = 1
+        return self.game_state
+
+    def step(self, action):
+        next_state, value, done = self.game_state.take_action(action)
+        self.game_state = next_state
+        self.current_player = -self.current_player
+        info = None
+        return ((next_state, value, done, info))
+
+    
 
 # to make it more modular the win conditions and gameplay should be passed in
 # As I go through more of this I am thinking Game State might need to be defined from an external source in order to fully work
