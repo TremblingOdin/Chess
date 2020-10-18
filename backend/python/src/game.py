@@ -18,9 +18,9 @@ class Game:
 # to make it more modular the win conditions and gameplay should be passed in
 # As I go through more of this I am thinking Game State might need to be defined from an external source in order to fully work
 class GameState():
-    def __init__(self, board, player_turn, win_conditions, game_play, binary, conversion_to_id, endgame_check, value_function):
+    def __init__(self, board, pieces player_turn, win_conditions, game_play, binary, conversion_to_id, endgame_check, value_function):
         self.board = board
-        self.pieces = {'1':'X', '0':'-', '-1':'0'}
+        self.pieces = pieces
         self.winners = win_conditions
         self.player_turn = player_turn
         self.binary = binary
@@ -30,6 +30,12 @@ class GameState():
         self.value = value_function
         self.score = self._get_score()
        
+    #I think I would need to ask for a new game state many times, so I made a function
+    def _reinitialize(self, board, player_turn):
+        state = GameState(board, self.pieces, player_turn, self.winners, self.allowed_actions, self.binary, self.id, self.is_end_game, self.value)
+        return state
+        
+
     def _get_score():
         tmp = self.value
         return(tmp[1],tmp[2])
