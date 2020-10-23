@@ -9,7 +9,7 @@ class ChessPiece {
 
 		//Temp dev code
 		this.size = 2;
-		this.render = this.dev-render.bind(this);
+		var render = this.dev-render.bind(this);
 	}
 
 	dev-render(center) {
@@ -33,6 +33,8 @@ class Chessboard {
 		var ChessboardDeselect = this.ChessboardDeselect.bind(this);
 		var InitializeData = this.InitializeData.bind(this);
 		var InitializeGraphics = this.InitializeGraphics.bind(this);
+		var spawnPieces = this.spawnPieces.bind(this);
+		var spawnPawns = this.spawnPawns.bind(this);
 
 		this.board.addEventListener("mousedown", ChessboardSelect);
 		this.board.addEventListener("mouseup", ChessboardDeselect);
@@ -40,6 +42,7 @@ class Chessboard {
 		InitializeGraphics(graphicsInfo);
 		this.boardArray = InitializeData();
 
+		this.homePlayer = white;
 		/*
 		if(cpu != false) {
 			this.player2 = cpu;
@@ -98,27 +101,26 @@ class Chessboard {
 		//TODO: MAke icons and load in icons
 		for(var i = 0; i < this.rowSize, i++){
 			if(i < 1 || i > 6) {
-				spawnPieces();
+				this.spawnPieces(i);
 			}
 
 			if(i == 1 || i == 6) {
-				spawnPawns();
+				this.spawnPawns(i);
 			}
 		}
 	}
 
-	spawnPieces() {
-
+	spawnPieces(row) {
+		
 	}
 
-	spawnPawns() {
+	spawnPawns(row) {
 
 	}
 
 	InitializeData() {
 		let defaultData = [];
 
-		let 
 	}
 
 	ChessboardSelect(event) {
