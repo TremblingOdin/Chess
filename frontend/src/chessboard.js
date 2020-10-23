@@ -5,6 +5,7 @@ class ChessPiece {
 		}
 
 		this.boardCTX = boardCTX;
+		this.type = type;
 
 		//Temp dev code
 		this.size = 2;
@@ -95,6 +96,23 @@ class Chessboard {
 		}
 
 		//TODO: MAke icons and load in icons
+		for(var i = 0; i < this.rowSize, i++){
+			if(i < 1 || i > 6) {
+				spawnPieces();
+			}
+
+			if(i == 1 || i == 6) {
+				spawnPawns();
+			}
+		}
+	}
+
+	spawnPieces() {
+
+	}
+
+	spawnPawns() {
+
 	}
 
 	InitializeData() {
