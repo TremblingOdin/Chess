@@ -1,79 +1,21 @@
-function defineEnumProperty(ctx) {
-	return (prop, value) => {
-		Object.defineProperty(ctx, prop, {
-			configurable: false,
-			writable: false,
-			enumerable: true,
-			value: value
-		});
-	}
-}
-
-function Color() {
-	return Color;
-}
-
-Color.values = function() {
-	return Object.keys(Color)
-		.filter(key => typeof Color[key] !== 'function')
-		.sort((key1, key2) => Color[key1] - Color[key2]);
-}
-
-Color.keys = function() {
-	return Color.values()
-		.map(key => Color[key]);
-}
-
-Color.getByValue = function(val) {
-	return Color.values()
-		.find(colorValue => Color[colorValue] === val);
-}
-
-var addEnumColor = defineEnumProperty(Color), colors = ['WHITE', 'BLACK'];
-colors.forEach((color, index) => {
-	addEnumColor(color, index);
-});
-
-
-function Piece() {
-	return Piece;
-}
-
-Piece.values = function() {
-	return Object.keys(Piece)
-		.filter(key => typeof Piece[key] !== 'function')
-		.sort((key1, key2) => Piece[key1] - Piece[key2]);
-}
-
-Piece.keys = function() {
-	return Color.values()
-		.map(key => Color[key]);
-}
-
-Piece.getByValue = function(val) {
-	return Piece.values()
-		.find(pieceValue => Piece[pieceValue] === val);
-}
-
-var addEnumPiece = defineEnumProperty(Piece), pieces = ['PAWN', 'ROOK', 'KNIGHT', 'BISHOP', 'QUEEN', 'KING'];
-pieces.forEach((piece, index) => {
-	addEnumPiece(piece, index);
-}
-
-
 class ChessPiece {
-	constructor(color, type) {
-		if(Color.value.includes(color) || Color.keys.includes(color)) {
-			this.color = color;
-		} else {
-			throw "[ChessPiece] passed in color is not a Color enum value";
+	constructor(black, type, boardCTX) {
+		if(black) {
+			this.color = BLACK
 		}
 
-		if(Piece.value.includes(type) || Piece.keys.includes(type)) {
-			this.pieceType = type;
-		} else {
-			throw "[ChessPiece] passed in type is not a Piece enum value";
-		}
+		this.boardCTX = boardCTX;
+
+		//Temp dev code
+		this.size = 2;
+		this.render = this.dev-render.bind(this);
+	}
+
+	dev-render(center) {
+		this.boardCTX.beginPath();
+		this.boardCTX.fillStyle = "#FF6A6A";
+		this.boardCTX.arc(center.x, center.y, 0, size * Math.PI, true);
+		this.boardCTX.fill();
 	}
 }
 
@@ -157,8 +99,8 @@ class Chessboard {
 
 	InitializeData() {
 		let defaultData = [];
-		
 
+		let 
 	}
 
 	ChessboardSelect(event) {
@@ -168,7 +110,7 @@ class Chessboard {
 		let rowNumber = Math.floor(clickX / this.rowSize);
 		let columnNumber = Math.floor(clickY / this.columnSize);
 
-		this.boardCTX.fillStyle = "rgba(50,255,50,0.5)";
+		this.boardCTX.fillStyle = "rgb(50,255,50)";
 		this.boardCTX.fillRect(rowNumber * this.rowSize, columnNumber * this.columnSize, 
 			this.rowSize, this.columnSize);
 	}
