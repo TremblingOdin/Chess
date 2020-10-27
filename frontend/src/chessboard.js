@@ -40,9 +40,8 @@ class Chessboard {
 		this.board.addEventListener("mouseup", ChessboardDeselect);
 
 		InitializeGraphics(graphicsInfo);
-		this.boardArray = InitializeData();
 
-		this.homePlayer = white;
+		this.homePlayer = GAME.PLAYER.WHITE;
 		/*
 		if(cpu != false) {
 			this.player2 = cpu;
@@ -101,7 +100,7 @@ class Chessboard {
 		//TODO: MAke icons and load in icons
 		for(var i = 0; i < this.rowSize, i++){
 			if(i < 1 || i > 6) {
-				this.spawnPieces(i);
+				this.boardArraythis.spawnPieces(i);
 			}
 
 			if(i == 1 || i == 6) {
@@ -111,6 +110,23 @@ class Chessboard {
 	}
 
 	spawnPieces(row) {
+		var isBlack = false;
+		var yStart = 0;
+		
+		if(row == 0) {
+			if(this.homePlayer == GAME.PLAYER.WHITE) {
+				isBlack = true;
+			}
+		}
+
+		if(row == 7) {
+			if(this.homePlayer == GAME.PLAYER.BLACK) {
+				isBlack = true;
+				yStart = this.rowSize * 7;
+			}
+		}
+		var rook1 = ChessPiece(isBlack, ROOK, this.boardCTX);
+		var rook2 = ChessPiece(
 		
 	}
 
