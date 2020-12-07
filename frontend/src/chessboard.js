@@ -9,10 +9,10 @@ class ChessPiece {
 
 		//Temp dev code
 		this.size = 2;
-		var render = this.dev-render.bind(this);
+		var render = this.devRender.bind(this);
 	}
 
-	dev-render(center) {
+	devRender(center) {
 		this.boardCTX.beginPath();
 		this.boardCTX.fillStyle = "#FF6A6A";
 		this.boardCTX.arc(center.x, center.y, 0, size * Math.PI, true);
@@ -98,7 +98,7 @@ class Chessboard {
 		}
 
 		//TODO: MAke icons and load in icons
-		for(var i = 0; i < this.rowSize, i++){
+		for(var i = 0; i < this.rowSize; i++){
 			if(i < 1 || i > 6) {
 				this.boardArraythis.spawnPieces(i);
 			}
@@ -126,7 +126,7 @@ class Chessboard {
 			}
 		}
 		var rook1 = ChessPiece(isBlack, ROOK, this.boardCTX);
-		var rook2 = ChessPiece(
+		var rook2 = ChessPiece(!isBlack, ROOK, this.boardCTX);
 		
 	}
 
